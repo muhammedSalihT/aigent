@@ -1,0 +1,130 @@
+﻿Analyzing softaigent...                                         
+
+   info - Use 'const' with the constructor to improve performance - lib\core\router\app_router.dart:41:39 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\core\router\app_router.dart:43:13 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\core\router\app_router.dart:44:16 - prefer_const_constructors
+warning - Unused import: '../../../home/presentation/pages/home_page.dart' - lib\features\about\presentation\pages\about_page.dart:10:8 - unused_import
+warning - The library 'package:softaigent/features/home/presentation/pages/home_page.dart' doesn't export a member with the shown name '_NavBar' - lib\features\about\presentation\pages\about_page.dart:10:63 - undefined_shown_name
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\about\presentation\pages\about_page.dart:111:58 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\about\presentation\pages\about_page.dart:111:99 - deprecated_member_use
+  error - The method '_NavBar' isn't defined for the type '_AboutPageState' - lib\features\about\presentation\pages\about_page.dart:132:56 - undefined_method
+   info - Use 'const' with the constructor to improve performance - lib\features\about\presentation\pages\about_page.dart:189:14 - prefer_const_constructors
+   info - Use 'const' literals as arguments to constructors of '@immutable' classes - lib\features\about\presentation\pages\about_page.dart:190:19 - prefer_const_literals_to_create_immutables
+   info - Use 'const' with the constructor to improve performance - lib\features\about\presentation\pages\about_page.dart:191:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\about\presentation\pages\about_page.dart:193:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\about\presentation\pages\about_page.dart:195:11 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\about\presentation\pages\about_page.dart:197:11 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\about\presentation\pages\about_page.dart:239:38 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\about\presentation\pages\about_page.dart:327:53 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\about\presentation\pages\about_page.dart:330:55 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\bloc\contact_bloc.dart:36:12 - prefer_const_constructors
+warning - Unused import: '../../../home/presentation/pages/home_page.dart' - lib\features\contact\presentation\pages\contact_page.dart:14:8 - unused_import
+warning - The library 'package:softaigent/features/home/presentation/pages/home_page.dart' doesn't export a member with the shown name '_NavBar' - lib\features\contact\presentation\pages\contact_page.dart:14:63 - undefined_shown_name
+  error - The method '_NavBar' isn't defined for the type '_ContactPageState' - lib\features\contact\presentation\pages\contact_page.dart:91:58 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\contact\presentation\pages\contact_page.dart:321:59 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\pages\contact_page.dart:328:25 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\pages\contact_page.dart:364:9 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\pages\contact_page.dart:366:9 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\pages\contact_page.dart:368:9 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\features\contact\presentation\pages\contact_page.dart:370:9 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\contact\presentation\pages\contact_page.dart:376:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\contact\presentation\pages\contact_page.dart:376:90 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\contact\presentation\pages\contact_page.dart:420:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\pages\home_page.dart:98:47 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\pages\home_page.dart:266:63 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\pages\home_page.dart:287:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\pages\home_page.dart:287:85 - deprecated_member_use
+warning - Unused import: '../../../../core/constants/app_constants.dart' - lib\features\home\presentation\widgets\hero_section.dart:6:8 - unused_import
+warning - Unused import: '../../../../shared/widgets/glow_text.dart' - lib\features\home\presentation\widgets\hero_section.dart:8:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\hero_section.dart:76:54 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\hero_section.dart:203:55 - deprecated_member_use
+warning - Unused import: '../../../../core/theme/app_colors.dart' - lib\features\home\presentation\widgets\portfolio_preview_section.dart:3:8 - unused_import
+warning - Unused import: '../../../../core/theme/app_typography.dart' - lib\features\home\presentation\widgets\portfolio_preview_section.dart:4:8 - unused_import
+   info - Use 'const' for final variables initialized to a constant value - lib\features\home\presentation\widgets\process_section.dart:14:5 - prefer_const_declarations
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\process_section.dart:23:42 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\process_section.dart:94:71 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\process_section.dart:109:58 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\process_section.dart:109:99 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\features\home\presentation\widgets\process_section.dart:152:27 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\process_section.dart:166:54 - deprecated_member_use
+warning - Unused import: '../../../../core/theme/app_colors.dart' - lib\features\home\presentation\widgets\services_section.dart:2:8 - unused_import
+warning - Unused import: '../../../../core/theme/app_typography.dart' - lib\features\home\presentation\widgets\services_section.dart:3:8 - unused_import
+warning - The value of the local variable 'isTablet' isn't used - lib\features\home\presentation\widgets\services_section.dart:14:11 - unused_local_variable
+warning - Unused import: '../../../../core/theme/app_typography.dart' - lib\features\home\presentation\widgets\stats_section.dart:4:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\stats_section.dart:21:37 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\stats_section.dart:22:36 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\stats_section.dart:23:37 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\why_choose_us_section.dart:78:53 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\presentation\widgets\why_choose_us_section.dart:81:55 - deprecated_member_use
+warning - Unused import: '../../../home/presentation/pages/home_page.dart' - lib\features\portfolio\presentation\pages\portfolio_page.dart:9:8 - unused_import
+warning - The library 'package:softaigent/features/home/presentation/pages/home_page.dart' doesn't export a member with the shown name '_NavBar' - lib\features\portfolio\presentation\pages\portfolio_page.dart:9:63 - undefined_shown_name
+  error - The method '_NavBar' isn't defined for the type '_PortfolioPageState' - lib\features\portfolio\presentation\pages\portfolio_page.dart:127:56 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\portfolio\presentation\pages\portfolio_page.dart:158:55 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\portfolio\presentation\pages\portfolio_page.dart:160:75 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\portfolio\presentation\pages\portfolio_page.dart:184:50 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\portfolio\presentation\pages\portfolio_page.dart:206:59 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\portfolio\presentation\pages\portfolio_page.dart:208:78 - deprecated_member_use
+warning - Unused import: '../../../home/presentation/pages/home_page.dart' - lib\features\services\presentation\pages\services_page.dart:11:8 - unused_import
+warning - The library 'package:softaigent/features/home/presentation/pages/home_page.dart' doesn't export a member with the shown name '_NavBar' - lib\features\services\presentation\pages\services_page.dart:11:63 - undefined_shown_name
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\services\presentation\pages\services_page.dart:108:58 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\services\presentation\pages\services_page.dart:108:99 - deprecated_member_use
+  error - The method '_NavBar' isn't defined for the type '_ServicesPageState' - lib\features\services\presentation\pages\services_page.dart:129:56 - undefined_method
+  error - Target of URI doesn't exist: '../core/theme/app_colors.dart' - lib\shared\widgets\animated_neural_background.dart:3:8 - uri_does_not_exist
+  error - Undefined name 'AppColors' - lib\shared\widgets\animated_neural_background.dart:152:29 - undefined_identifier
+  error - Undefined name 'AppColors' - lib\shared\widgets\animated_neural_background.dart:167:25 - undefined_identifier
+  error - Undefined name 'AppColors' - lib\shared\widgets\animated_neural_background.dart:171:25 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\animated_neural_background.dart:175:38 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\animated_neural_background.dart:182:30 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:54:9 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:54:25 - prefer_const_constructors
+   info - Use 'const' literals as arguments to constructors of '@immutable' classes - lib\shared\widgets\footer_widget.dart:54:64 - prefer_const_literals_to_create_immutables
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:57:9 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:57:25 - prefer_const_constructors
+   info - Use 'const' literals as arguments to constructors of '@immutable' classes - lib\shared\widgets\footer_widget.dart:57:63 - prefer_const_literals_to_create_immutables
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:74:9 - prefer_const_constructors
+   info - Use 'const' literals as arguments to constructors of '@immutable' classes - lib\shared\widgets\footer_widget.dart:74:48 - prefer_const_literals_to_create_immutables
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:98:9 - prefer_const_constructors
+   info - Use 'const' literals as arguments to constructors of '@immutable' classes - lib\shared\widgets\footer_widget.dart:99:21 - prefer_const_literals_to_create_immutables
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:100:13 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:102:13 - prefer_const_constructors
+   info - Use 'const' with the constructor to improve performance - lib\shared\widgets\footer_widget.dart:104:13 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\glow_text.dart:28:35 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\gradient_button.dart:46:58 - deprecated_member_use
+   info - The private field _scrolled could be 'final' - lib\shared\widgets\nav_bar.dart:16:8 - prefer_final_fields
+warning - The value of the field '_scrolled' isn't used - lib\shared\widgets\nav_bar.dart:16:8 - unused_field
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\nav_bar.dart:86:35 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\nav_bar.dart:252:65 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:48:57 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:51:61 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:78:80 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:91:60 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:115:57 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\project_card.dart:117:76 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\section_header.dart:28:44 - deprecated_member_use
+   info - 'scale' is deprecated and shouldn't be used. Use scaleByVector3, scaleByVector4, or scaleByDouble instead - lib\shared\widgets\service_card.dart:49:13 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\service_card.dart:55:55 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\service_card.dart:59:59 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\shared\widgets\service_card.dart:74:72 - deprecated_member_use
+warning - The asset directory 'assets/images/' doesn't exist - pubspec.yaml:57:7 - asset_directory_does_not_exist
+warning - The asset directory 'assets/icons/' doesn't exist - pubspec.yaml:58:7 - asset_directory_does_not_exist
+  error - The name 'MyApp' isn't a class - test\widget_test.dart:16:35 - creation_with_non_type
+
+flutter : 108 issues 
+found. (ran in 2.4s)
+At line:1 char:1
++ flutter analyze 
+--no-pub 2>&1 | 
+Out-File -Encoding 
+UTF8 analyze_out.t ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (108 issues fo   
+ und. (ran in 2.4s)    
+:String) [], Remot    
+eException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
