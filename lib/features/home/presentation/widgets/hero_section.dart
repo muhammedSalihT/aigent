@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../shared/widgets/animated_neural_background.dart';
@@ -13,7 +14,8 @@ class HeroSection extends StatefulWidget {
   State<HeroSection> createState() => _HeroSectionState();
 }
 
-class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStateMixin {
+class _HeroSectionState extends State<HeroSection>
+    with SingleTickerProviderStateMixin {
   late AnimationController _bounceController;
 
   @override
@@ -69,7 +71,8 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
                 children: [
                   // AI badge
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: AppColors.primaryPurple.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(24),
@@ -89,14 +92,24 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
                         const SizedBox(width: 8),
                         Text(
                           'AI-First Software Development',
-                          style: AppTypography.labelMedium.copyWith(color: AppColors.primaryPurple),
+                          style: AppTypography.labelMedium
+                              .copyWith(color: AppColors.primaryPurple),
                         ),
                       ],
                     ),
                   )
                       .animate()
-                      .fadeIn(duration: 600.ms)
-                      .slideY(begin: -0.2),
+                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .slideY(
+                          begin: 0.4,
+                          end: 0,
+                          duration: 800.ms,
+                          curve: Curves.easeOutCubic)
+                      .scale(
+                          begin: const Offset(0.9, 0.9),
+                          end: const Offset(1, 1),
+                          duration: 800.ms,
+                          curve: Curves.easeOutCubic),
 
                   const SizedBox(height: 28),
 
@@ -115,8 +128,16 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
                     maxLines: 3,
                   )
                       .animate(delay: 400.ms)
-                      .fadeIn(duration: 700.ms)
-                      .shimmer(delay: 800.ms, duration: 1200.ms, color: AppColors.textMuted),
+                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .slideY(
+                          begin: 0.2,
+                          end: 0,
+                          duration: 800.ms,
+                          curve: Curves.easeOutCubic)
+                      .shimmer(
+                          delay: 1200.ms,
+                          duration: 1500.ms,
+                          color: AppColors.textMuted),
 
                   const SizedBox(height: 44),
 
@@ -140,8 +161,17 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
                     ],
                   )
                       .animate(delay: 600.ms)
-                      .fadeIn(duration: 600.ms)
-                      .slideY(begin: 0.3),
+                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .slideY(
+                          begin: 0.3,
+                          end: 0,
+                          duration: 800.ms,
+                          curve: Curves.easeOutCubic)
+                      .scale(
+                          begin: const Offset(0.9, 0.9),
+                          end: const Offset(1, 1),
+                          duration: 800.ms,
+                          curve: Curves.easeOutCubic),
                 ],
               ),
             ),
@@ -161,7 +191,8 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
                     children: [
                       Text('Scroll to explore', style: AppTypography.caption),
                       const SizedBox(height: 8),
-                      const Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.primaryPurple, size: 28),
+                      const Icon(Icons.keyboard_arrow_down_rounded,
+                          color: AppColors.primaryPurple, size: 28),
                     ],
                   ),
                 );
@@ -185,35 +216,55 @@ class _HeroTitle extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Soft',
+            text: 'Your business software\n',
             style: AppTypography.displayLarge.copyWith(
-              fontSize: isMobile ? 42 : 80,
+              fontSize: isMobile ? 28 : 50,
               color: Colors.white,
+              height: 1.2,
             ),
           ),
           TextSpan(
-            text: 'AI',
+            text: 'A',
+            style: AppTypography.displayLarge.copyWith(
+              fontSize: isMobile ? 42 : 80,
+              color: Colors.white,
+              height: 1.2,
+            ),
+          ),
+          TextSpan(
+            text: 'I',
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 42 : 80,
               color: AppColors.primaryPurple,
+              height: 1.2,
               shadows: [
                 const Shadow(color: AppColors.primaryPurple, blurRadius: 25),
-                Shadow(color: AppColors.primaryPurple.withOpacity(0.4), blurRadius: 50),
+                Shadow(
+                    color: AppColors.primaryPurple.withOpacity(0.4),
+                    blurRadius: 50),
               ],
             ),
           ),
           TextSpan(
-            text: 'gent',
+            text: 'GENT',
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 42 : 80,
               color: Colors.white,
+              height: 1.2,
             ),
           ),
         ],
       ),
     )
         .animate(delay: 200.ms)
-        .fadeIn(duration: 700.ms)
-        .slideY(begin: 0.15);
+        .fadeIn(duration: 1000.ms, curve: Curves.easeOutCubic)
+        .slideY(
+            begin: 0.2, end: 0, duration: 1000.ms, curve: Curves.easeOutCubic)
+        .scale(
+            begin: const Offset(0.9, 0.9),
+            end: const Offset(1, 1),
+            duration: 1000.ms,
+            curve: Curves.easeOutCubic)
+        .shimmer(delay: 1200.ms, duration: 1500.ms, color: Colors.white12);
   }
 }
