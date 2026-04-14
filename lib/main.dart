@@ -17,7 +17,7 @@ class SoftAIgentApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'SoftAIgent — AI-First Software Development',
+      title: 'AIGENT SOFTWARES — AI-First Software Development',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
       routerConfig: AppRouter.router,
