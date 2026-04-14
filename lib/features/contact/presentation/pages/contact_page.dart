@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'package:aigent_softwares/shared/widgets/nav_bar.dart';
 
 import '../../../../core/constants/app_constants.dart';
@@ -52,45 +53,49 @@ class _ContactPageState extends State<ContactPage> {
         backgroundColor: AppColors.darkBackground,
         body: Stack(
           children: [
-            SingleChildScrollView(
+            WebSmoothScroll(
               controller: _scrollController,
-              child: Column(
-                children: [
-                  const SizedBox(height: 120),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                    child: const SectionHeader(
-                      tag: '📬 Contact Us',
-                      title: 'Let\'s Build Something Great',
-                      subtitle:
-                          'Tell us about your project and we\'ll get back to you within 24 hours.',
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _scrollController,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 120),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                      child: const SectionHeader(
+                        tag: '📬 Contact Us',
+                        title: 'Let\'s Build Something Great',
+                        subtitle:
+                            'Tell us about your project and we\'ll get back to you within 24 hours.',
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 60),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                    child: isMobile
-                        ? Column(
-                            children: [
-                              _ContactForm(),
-                              const SizedBox(height: 48),
-                              _ContactInfo(),
-                            ],
-                          )
-                        : Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(flex: 3, child: _ContactForm()),
-                              const SizedBox(width: 60),
-                              Expanded(flex: 2, child: _ContactInfo()),
-                            ],
-                          ),
-                  ),
-                  const SizedBox(height: 80),
-                  const FooterWidget(),
-                ],
+                    const SizedBox(height: 60),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                      child: isMobile
+                          ? Column(
+                              children: [
+                                _ContactForm(),
+                                const SizedBox(height: 48),
+                                _ContactInfo(),
+                              ],
+                            )
+                          : Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(flex: 3, child: _ContactForm()),
+                                const SizedBox(width: 60),
+                                Expanded(flex: 2, child: _ContactInfo()),
+                              ],
+                            ),
+                    ),
+                    const SizedBox(height: 80),
+                    const FooterWidget(),
+                  ],
+                ),
               ),
             ),
             Positioned(

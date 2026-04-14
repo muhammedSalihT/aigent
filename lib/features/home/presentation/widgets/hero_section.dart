@@ -120,7 +120,7 @@ class _HeroSectionState extends State<HeroSection>
 
                   // Tagline with shimmer
                   Text(
-                    'We automate workflows, reduce manual effort, and ship\nAI-powered apps & web that scale with your business.',
+                    'We automate workflows, reduce manual effort, and ship\nAI-powered apps & web that grow your business.',
                     style: AppTypography.tagline.copyWith(
                       fontSize: isMobile ? 15 : 20,
                     ),
@@ -216,7 +216,7 @@ class _HeroTitle extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Your business software\n',
+            text: 'Your Growing Business Software\n',
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 28 : 50,
               color: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -46,90 +47,94 @@ class _AboutPageState extends State<AboutPage> {
       backgroundColor: AppColors.darkBackground,
       body: Stack(
         children: [
-          SingleChildScrollView(
+          WebSmoothScroll(
             controller: _scrollController,
-            child: Column(
-              children: [
-                const SizedBox(height: 120),
-                // Story section
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: isMobile
-                      ? Column(
-                          children: [_StoryText(), const SizedBox(height: 40), _StoryStats(isMobile: isMobile)],
-                        )
-                      : Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(flex: 3, child: _StoryText()),
-                            const SizedBox(width: 60),
-                            Expanded(flex: 2, child: _StoryStats(isMobile: isMobile)),
-                          ],
-                        ),
-                ),
-                const SizedBox(height: 100),
-                // Mission values
-                _MissionSection(isMobile: isMobile),
-                const SizedBox(height: 100),
-                // Team
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: const SectionHeader(
-                    tag: '👥 Our Team',
-                    title: 'The Minds Behind AIgent softwares',
-                    subtitle: 'Passionate engineers, AI researchers, and designers on a mission to build the future.',
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  const SizedBox(height: 120),
+                  // Story section
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: isMobile
+                        ? Column(
+                            children: [_StoryText(), const SizedBox(height: 40), _StoryStats(isMobile: isMobile)],
+                          )
+                        : Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(flex: 3, child: _StoryText()),
+                              const SizedBox(width: 60),
+                              Expanded(flex: 2, child: _StoryStats(isMobile: isMobile)),
+                            ],
+                          ),
                   ),
-                ),
-                const SizedBox(height: 60),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: isMobile
-                      ? Column(
-                          children: AppConstants.team.asMap().entries.map((e) {
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 24),
-                              child: _TeamCard(member: e.value, index: e.key),
-                            );
-                          }).toList(),
-                        )
-                      : Row(
-                          children: AppConstants.team.asMap().entries.map((e) {
-                            return Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(right: e.key < 2 ? 24 : 0),
+                  const SizedBox(height: 100),
+                  // Mission values
+                  _MissionSection(isMobile: isMobile),
+                  const SizedBox(height: 100),
+                  // Team
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: const SectionHeader(
+                      tag: '👥 Our Team',
+                      title: 'The Minds Behind AIgent softwares',
+                      subtitle: 'Passionate engineers, AI researchers, and designers on a mission to build the future.',
+                    ),
+                  ),
+                  const SizedBox(height: 60),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: isMobile
+                        ? Column(
+                            children: AppConstants.team.asMap().entries.map((e) {
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 24),
                                 child: _TeamCard(member: e.value, index: e.key),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          )
+                        : Row(
+                            children: AppConstants.team.asMap().entries.map((e) {
+                              return Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: e.key < 2 ? 24 : 0),
+                                  child: _TeamCard(member: e.value, index: e.key),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                  ),
+                  const SizedBox(height: 80),
+                  // CTA
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: Container(
+                      padding: const EdgeInsets.all(48),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primaryPurple.withOpacity(0.2), AppColors.electricBlue.withOpacity(0.1)],
                         ),
-                ),
-                const SizedBox(height: 80),
-                // CTA
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: Container(
-                    padding: const EdgeInsets.all(48),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [AppColors.primaryPurple.withOpacity(0.2), AppColors.electricBlue.withOpacity(0.1)],
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: AppColors.borderSubtle),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.borderSubtle),
-                    ),
-                    child: Column(
-                      children: [
-                        Text('Join Our Journey', style: AppTypography.h1, textAlign: TextAlign.center),
-                        const SizedBox(height: 12),
-                        Text('We\'re always looking for talented individuals and ambitious clients.', style: AppTypography.bodyLarge, textAlign: TextAlign.center),
-                        const SizedBox(height: 28),
-                        GradientButton(label: 'Work With Us', onPressed: () => context.go('/contact'), icon: Icons.handshake_rounded),
-                      ],
+                      child: Column(
+                        children: [
+                          Text('Join Our Journey', style: AppTypography.h1, textAlign: TextAlign.center),
+                          const SizedBox(height: 12),
+                          Text('We\'re always looking for talented individuals and ambitious clients.', style: AppTypography.bodyLarge, textAlign: TextAlign.center),
+                          const SizedBox(height: 28),
+                          GradientButton(label: 'Work With Us', onPressed: () => context.go('/contact'), icon: Icons.handshake_rounded),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 80),
-                const FooterWidget(),
-              ],
+                  const SizedBox(height: 80),
+                  const FooterWidget(),
+                ],
+              ),
             ),
           ),
           Positioned(

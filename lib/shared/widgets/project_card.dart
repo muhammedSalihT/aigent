@@ -51,6 +51,7 @@ class ProjectCard extends StatelessWidget {
                       : [],
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
@@ -104,10 +105,11 @@ class ProjectCard extends StatelessWidget {
                         children: [
                           Text(title, style: AppTypography.h4.copyWith(color: Colors.white)),
                           const SizedBox(height: 8),
-                          Text(description, style: AppTypography.caption, maxLines: 2, overflow: TextOverflow.ellipsis),
+                          Text(description, style: AppTypography.caption, maxLines: 5, overflow: TextOverflow.ellipsis),
                           const SizedBox(height: 16),
                           Wrap(
                             spacing: 8,
+                            runSpacing: 8,
                             children: tags.map((tag) => Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(

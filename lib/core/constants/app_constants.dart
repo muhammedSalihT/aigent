@@ -91,11 +91,11 @@ class AppConstants {
   // Portfolio Projects
   static const List<Map<String, dynamic>> portfolio = [
     {
-      'title': 'AI Sales CRM Agent',
-      'description': 'End-to-end CRM automation with AI agents that qualify leads, send follow-ups, and close deals automatically.',
-      'tags': ['AI', 'Automation', 'CRM'],
-      'image': 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80',
-      'category': 'AI Agent',
+      'title': 'Learning Management System — EdTech Platform',
+      'description': 'We partnered with a well-known education platform to design and develop a full-featured Learning Management System that transforms the way students learn and educators teach. Built with a focus on simplicity, performance, and real impact, this LMS brings the entire learning journey into one seamless digital experience.',
+      'tags': ['Available on Play Store & App Store', '10,000+ Downloads', 'High User Retention'],
+      'image': 'https://cdn.dribbble.com/userupload/13811157/file/original-f07a44ab0627c61aa5880a95e78ba1be.png?resize=2048x1690&vertical=center',
+      'category': 'EdTech',
     },
     {
       'title': 'HealthTrack Flutter App',

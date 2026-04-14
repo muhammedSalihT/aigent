@@ -44,6 +44,8 @@ dependencies:
   # Utilities
   visibility_detector: ^0.4.0+2
   url_launcher: ^6.3.0
+  web_smooth_scroll: ^2.0.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

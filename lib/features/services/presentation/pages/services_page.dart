@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../shared/bloc/scroll_cubit.dart';
 
@@ -46,51 +47,33 @@ class _ServicesPageState extends State<ServicesPage> {
       backgroundColor: AppColors.darkBackground,
       body: Stack(
         children: [
-          SingleChildScrollView(
+          WebSmoothScroll(
             controller: _scrollController,
-            child: Column(
-              children: [
-                const SizedBox(height: 120),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: const SectionHeader(
-                    tag: '⚡ Services',
-                    title: 'What We Build For You',
-                    subtitle:
-                        'End-to-end technology services built for modern businesses that demand AI-first thinking.',
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  const SizedBox(height: 120),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: const SectionHeader(
+                      tag: '⚡ Services',
+                      title: 'What We Build For You',
+                      subtitle:
+                          'End-to-end technology services built for modern businesses that demand AI-first thinking.',
+                    ),
                   ),
-                ),
-                const SizedBox(height: 60),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: isMobile
-                      ? Column(
-                          children:
-                              AppConstants.services.asMap().entries.map((e) {
-                            final d = e.value;
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 24),
-                              child: ServiceCard(
-                                title: d['title'] as String,
-                                subtitle: d['subtitle'] as String,
-                                description: d['description'] as String,
-                                features:
-                                    List<String>.from(d['features'] as List),
-                                iconType: d['icon'] as String,
-                                index: e.key,
-                              ),
-                            );
-                          }).toList(),
-                        )
-                      : Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:
-                              AppConstants.services.asMap().entries.map((e) {
-                            final d = e.value;
-                            return Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.only(right: e.key < 2 ? 20 : 0),
+                  const SizedBox(height: 60),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: isMobile
+                        ? Column(
+                            children:
+                                AppConstants.services.asMap().entries.map((e) {
+                              final d = e.value;
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 24),
                                 child: ServiceCard(
                                   title: d['title'] as String,
                                   subtitle: d['subtitle'] as String,
@@ -100,50 +83,72 @@ class _ServicesPageState extends State<ServicesPage> {
                                   iconType: d['icon'] as String,
                                   index: e.key,
                                 ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          )
+                        : Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children:
+                                AppConstants.services.asMap().entries.map((e) {
+                              final d = e.value;
+                              return Expanded(
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.only(right: e.key < 2 ? 20 : 0),
+                                  child: ServiceCard(
+                                    title: d['title'] as String,
+                                    subtitle: d['subtitle'] as String,
+                                    description: d['description'] as String,
+                                    features:
+                                        List<String>.from(d['features'] as List),
+                                    iconType: d['icon'] as String,
+                                    index: e.key,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                  ),
+                  const SizedBox(height: 80),
+                  _TechStackSection(isMobile: isMobile),
+                  const SizedBox(height: 80),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: Container(
+                      padding: const EdgeInsets.all(48),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.primaryPurple.withOpacity(0.2),
+                            AppColors.electricBlue.withOpacity(0.1)
+                          ],
                         ),
-                ),
-                const SizedBox(height: 80),
-                _TechStackSection(isMobile: isMobile),
-                const SizedBox(height: 80),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: Container(
-                    padding: const EdgeInsets.all(48),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.primaryPurple.withOpacity(0.2),
-                          AppColors.electricBlue.withOpacity(0.1)
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: AppColors.borderSubtle),
+                      ),
+                      child: Column(
+                        children: [
+                          Text('Start Your Project',
+                              style: AppTypography.h1,
+                              textAlign: TextAlign.center),
+                          const SizedBox(height: 16),
+                          Text(
+                              'Tell us what you need and we\'ll get back within 24 hours.',
+                              style: AppTypography.bodyLarge,
+                              textAlign: TextAlign.center),
+                          const SizedBox(height: 28),
+                          GradientButton(
+                              label: 'Get a Free Quote',
+                              onPressed: () => context.go('/contact'),
+                              icon: Icons.rocket_launch_rounded),
                         ],
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.borderSubtle),
-                    ),
-                    child: Column(
-                      children: [
-                        Text('Start Your Project',
-                            style: AppTypography.h1,
-                            textAlign: TextAlign.center),
-                        const SizedBox(height: 16),
-                        Text(
-                            'Tell us what you need and we\'ll get back within 24 hours.',
-                            style: AppTypography.bodyLarge,
-                            textAlign: TextAlign.center),
-                        const SizedBox(height: 28),
-                        GradientButton(
-                            label: 'Get a Free Quote',
-                            onPressed: () => context.go('/contact'),
-                            icon: Icons.rocket_launch_rounded),
-                      ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 80),
-                const FooterWidget(),
-              ],
+                  const SizedBox(height: 80),
+                  const FooterWidget(),
+                ],
+              ),
             ),
           ),
           Positioned(

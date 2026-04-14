@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
 
 class AppTypography {
@@ -13,7 +14,7 @@ class AppTypography {
     double? letterSpacing,
   }) =>
       GoogleFonts.poppins(
-        fontSize: fontSize,
+        fontSize: fontSize.sp,
         fontWeight: fontWeight,
         color: color,
         height: height,

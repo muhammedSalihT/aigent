@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -58,86 +59,90 @@ class _PortfolioPageState extends State<PortfolioPage> {
       backgroundColor: AppColors.darkBackground,
       body: Stack(
         children: [
-          SingleChildScrollView(
+          WebSmoothScroll(
             controller: _scrollController,
-            child: Column(
-              children: [
-                const SizedBox(height: 120),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: const SectionHeader(
-                    tag: '🚀 Portfolio',
-                    title: 'Projects We\'re Proud Of',
-                    subtitle: 'A curated selection of the products and solutions we\'ve built for clients worldwide.',
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  const SizedBox(height: 120),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: const SectionHeader(
+                      tag: '🚀 Portfolio',
+                      title: 'Projects We\'re Proud Of',
+                      subtitle: 'A curated selection of the products and solutions we\'ve built for clients worldwide.',
+                    ),
                   ),
-                ),
-                const SizedBox(height: 32),
-                // Filter chips
-                BlocBuilder<PortfolioFilterCubit, String>(
-                  bloc: _filterCubit,
-                  builder: (context, selectedFilter) {
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                      child: Row(
-                        children: filters.map((f) {
-                          final active = selectedFilter == f;
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: GestureDetector(
-                              onTap: () => _filterCubit.setFilter(f),
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 200),
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                decoration: BoxDecoration(
-                                  color: active ? AppColors.primaryPurple : AppColors.surfaceCard,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: active ? AppColors.primaryPurple : AppColors.borderSubtle),
-                                ),
-                                child: Text(f, style: AppTypography.labelMedium.copyWith(
-                                  color: active ? Colors.white : AppColors.textMuted,
-                                )),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 48),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-                  child: BlocBuilder<PortfolioFilterCubit, String>(
+                  const SizedBox(height: 32),
+                  // Filter chips
+                  BlocBuilder<PortfolioFilterCubit, String>(
                     bloc: _filterCubit,
                     builder: (context, selectedFilter) {
-                      final filteredList = _getFiltered(selectedFilter);
-                      return LayoutBuilder(
-                        builder: (context, constraints) {
-                          final crossCount = isMobile ? 1 : (constraints.maxWidth < 900 ? 2 : 2);
-                          return GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: crossCount,
-                              crossAxisSpacing: 24,
-                              mainAxisSpacing: 24,
-                              childAspectRatio: isMobile ? 1.2 : 1.5,
-                            ),
-                            itemCount: filteredList.length,
-                            itemBuilder: (context, i) {
-                              final p = filteredList[i];
-                              return _FullProjectCard(project: p, index: i);
-                            },
-                          );
-                        },
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                        child: Row(
+                          children: filters.map((f) {
+                            final active = selectedFilter == f;
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: GestureDetector(
+                                onTap: () => _filterCubit.setFilter(f),
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: active ? AppColors.primaryPurple : AppColors.surfaceCard,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: active ? AppColors.primaryPurple : AppColors.borderSubtle),
+                                  ),
+                                  child: Text(f, style: AppTypography.labelMedium.copyWith(
+                                    color: active ? Colors.white : AppColors.textMuted,
+                                  )),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
                       );
                     },
                   ),
-                ),
-                const SizedBox(height: 80),
-                const FooterWidget(),
-              ],
+                  const SizedBox(height: 48),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    child: BlocBuilder<PortfolioFilterCubit, String>(
+                      bloc: _filterCubit,
+                      builder: (context, selectedFilter) {
+                        final filteredList = _getFiltered(selectedFilter);
+                        return LayoutBuilder(
+                          builder: (context, constraints) {
+                            final crossCount = isMobile ? 1 : (constraints.maxWidth < 900 ? 2 : 2);
+                            return GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossCount,
+                                crossAxisSpacing: 24,
+                                mainAxisSpacing: 24,
+                                childAspectRatio: isMobile ? 1.2 : 1.5,
+                              ),
+                              itemCount: filteredList.length,
+                              itemBuilder: (context, i) {
+                                final p = filteredList[i];
+                                return _FullProjectCard(project: p, index: i);
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  const FooterWidget(),
+                ],
+              ),
             ),
           ),
           Positioned(

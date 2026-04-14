@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -56,19 +57,23 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: AppColors.darkBackground,
         body: Stack(
           children: [
-            SingleChildScrollView(
+            WebSmoothScroll(
               controller: _scrollController,
-              child: const Column(
-                children: [
-                  HeroSection(),
-                  ServicesSection(),
-                  StatsSection(),
-                  WhyChooseUsSection(),
-                  PortfolioPreviewSection(),
-                  ProcessSection(),
-                  _CtaSection(),
-                  FooterWidget(),
-                ],
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _scrollController,
+                child: const Column(
+                  children: [
+                    HeroSection(),
+                    ServicesSection(),
+                    StatsSection(),
+                    WhyChooseUsSection(),
+                    PortfolioPreviewSection(),
+                    ProcessSection(),
+                    _CtaSection(),
+                    FooterWidget(),
+                  ],
+                ),
               ),
             ),
             Positioned(

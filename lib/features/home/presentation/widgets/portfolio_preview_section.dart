@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../core/constants/app_constants.dart';
-import '../../../../shared/widgets/section_header.dart';
-import '../../../../shared/widgets/project_card.dart';
 import '../../../../shared/widgets/gradient_button.dart';
+import '../../../../shared/widgets/project_card.dart';
+import '../../../../shared/widgets/section_header.dart';
 
 class PortfolioPreviewSection extends StatelessWidget {
   const PortfolioPreviewSection({super.key});
@@ -30,7 +32,8 @@ class PortfolioPreviewSection extends StatelessWidget {
                   child: SectionHeader(
                     tag: '🚀 Our Work',
                     title: 'Projects We\'re Proud Of',
-                    subtitle: 'Real products, real impact. From AI agents to cross-platform apps.',
+                    subtitle:
+                        'Real products, real impact. From AI agents to cross-platform apps.',
                     align: TextAlign.left,
                   ),
                 ),
@@ -46,7 +49,7 @@ class PortfolioPreviewSection extends StatelessWidget {
           ),
           const SizedBox(height: 48),
           SizedBox(
-            height: 460,
+            height: 500,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(right: isMobile ? 24 : 80),
