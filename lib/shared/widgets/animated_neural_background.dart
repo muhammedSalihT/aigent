@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aigent_softwares/core/theme/app_colors.dart';
 
 // Particle model
@@ -68,7 +69,7 @@ class _AnimatedNeuralBackgroundState extends State<AnimatedNeuralBackground>
         offsetX: 20 + _random.nextDouble() * 30,
         offsetY: 20 + _random.nextDouble() * 30,
         phase: _random.nextDouble() * 2 * pi,
-        radius: 3 + _random.nextDouble() * 3,
+        radius: 3.r + _random.nextDouble() * 3,
       ));
     }
 
@@ -78,7 +79,7 @@ class _AnimatedNeuralBackgroundState extends State<AnimatedNeuralBackground>
         x: _random.nextDouble() * size.width,
         y: _random.nextDouble() * size.height,
         speed: 0.3 + _random.nextDouble() * 0.7,
-        radius: 1,
+        radius: 1.r,
       ));
     }
   }

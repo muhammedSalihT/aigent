@@ -1,14 +1,15 @@
+import 'package:aigent_softwares/shared/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
-import 'package:aigent_softwares/shared/widgets/nav_bar.dart';
 
 import '../../../../core/constants/app_constants.dart';
-import '../../../../shared/bloc/scroll_cubit.dart';
 import '../../../../core/di/injection.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/bloc/scroll_cubit.dart';
 import '../../../../shared/widgets/footer_widget.dart';
 import '../../../../shared/widgets/gradient_button.dart';
 import '../../../../shared/widgets/section_header.dart';
@@ -26,12 +27,13 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   final ScrollController _scrollController = ScrollController();
   late ContactBloc _contactBloc;
-  final ScrollCubit _scrollCubit = ScrollCubit();
+  late ScrollCubit _scrollCubit;
 
   @override
   void initState() {
     super.initState();
     _contactBloc = sl<ContactBloc>();
+    _scrollCubit = ScrollCubit();
     _scrollController.addListener(() {
       _scrollCubit.checkScroll(_scrollController.offset);
     });
@@ -60,10 +62,10 @@ class _ContactPageState extends State<ContactPage> {
                 controller: _scrollController,
                 child: Column(
                   children: [
-                    const SizedBox(height: 120),
+                    SizedBox(height: 120.h),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? 24.w : 80.w),
                       child: const SectionHeader(
                         tag: '📬 Contact Us',
                         title: 'Let\'s Build Something Great',
@@ -71,15 +73,15 @@ class _ContactPageState extends State<ContactPage> {
                             'Tell us about your project and we\'ll get back to you within 24 hours.',
                       ),
                     ),
-                    const SizedBox(height: 60),
+                    SizedBox(height: 60.h),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? 24.w : 80.w),
                       child: isMobile
                           ? Column(
                               children: [
                                 _ContactForm(),
-                                const SizedBox(height: 48),
+                                SizedBox(height: 48.h),
                                 _ContactInfo(),
                               ],
                             )
@@ -87,12 +89,12 @@ class _ContactPageState extends State<ContactPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(flex: 3, child: _ContactForm()),
-                                const SizedBox(width: 60),
+                                SizedBox(width: 60.w),
                                 Expanded(flex: 2, child: _ContactInfo()),
                               ],
                             ),
                     ),
-                    const SizedBox(height: 80),
+                    SizedBox(height: 80.h),
                     const FooterWidget(),
                   ],
                 ),
@@ -104,7 +106,8 @@ class _ContactPageState extends State<ContactPage> {
                 right: 0,
                 child: BlocBuilder<ScrollCubit, bool>(
                   bloc: _scrollCubit,
-                  builder: (context, scrolled) => NavBarWidget(scrolled: scrolled),
+                  builder: (context, scrolled) =>
+                      NavBarWidget(scrolled: scrolled ?? false),
                 )),
           ],
         ),
@@ -139,13 +142,13 @@ class _ContactFormState extends State<_ContactForm> {
     super.dispose();
   }
 
-  void _submit(BuildContext context, String currentService) {
+  void _submit(BuildContext context, String? currentService) {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<ContactBloc>().add(ContactFormSubmitted(
             name: _nameController.text.trim(),
             email: _emailController.text.trim(),
             message: _messageController.text.trim(),
-            service: currentService,
+            service: currentService ?? _services.first,
           ));
     }
   }
@@ -168,13 +171,28 @@ class _ContactFormState extends State<_ContactForm> {
               .scale(begin: const Offset(0.9, 0.9));
         }
 
+        // Ensure state.service is initialized
+        String? selectedService;
+        if (state is ContactInitial) {
+          selectedService = _services.first;
+        } else if (state is ContactFormSubmitted) {
+          selectedService = state.service;
+        } else if (state is ContactLoading) {
+          selectedService = state.service;
+        } else if (state is ContactFailure) {
+          selectedService = state.service ?? _services.first;
+        } else if (state is ContactSuccess) {
+          selectedService = _services.first;
+        } else
+          selectedService = state.service;
+
         return Form(
           key: _formKey,
           child: Container(
-            padding: const EdgeInsets.all(36),
+            padding: EdgeInsets.all(36.w),
             decoration: BoxDecoration(
               color: AppColors.surfaceCard,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               border: Border.all(color: AppColors.borderSubtle),
             ),
             child: Column(
@@ -182,7 +200,7 @@ class _ContactFormState extends State<_ContactForm> {
               children: [
                 Text('Send Us a Message',
                     style: AppTypography.h3.copyWith(color: Colors.white)),
-                const SizedBox(height: 28),
+                SizedBox(height: 28.h),
                 _InputField(
                   controller: _nameController,
                   label: 'Your Name',
@@ -191,7 +209,7 @@ class _ContactFormState extends State<_ContactForm> {
                   validator: (v) =>
                       (v == null || v.isEmpty) ? 'Name is required' : null,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 _InputField(
                   controller: _emailController,
                   label: 'Email Address',
@@ -200,12 +218,13 @@ class _ContactFormState extends State<_ContactForm> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (v) {
                     if (v == null || v.isEmpty) return 'Email is required';
-                    if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(v))
-                      return 'Enter a valid email';
+                    final regex =
+                        RegExp(r'^[\w\.\-]+@([\w\-]+\.)+[\w\-]{2,4}$');
+                    if (!regex.hasMatch(v)) return 'Enter a valid email';
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 // Service selector
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,17 +232,19 @@ class _ContactFormState extends State<_ContactForm> {
                     Text('Service Interested In',
                         style: AppTypography.labelMedium
                             .copyWith(color: AppColors.textMuted)),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
                       decoration: BoxDecoration(
                         color: AppColors.darkBackground,
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                         border: Border.all(color: AppColors.borderSubtle),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          value: state.service,
+                          value: _services.contains(selectedService)
+                              ? selectedService
+                              : _services.first,
                           isExpanded: true,
                           dropdownColor: AppColors.surfaceCard,
                           style: AppTypography.bodySmall
@@ -232,13 +253,19 @@ class _ContactFormState extends State<_ContactForm> {
                               .map((s) =>
                                   DropdownMenuItem(value: s, child: Text(s)))
                               .toList(),
-                          onChanged: (v) => context.read<ContactBloc>().add(ContactServiceChanged(v!)),
+                          onChanged: (v) {
+                            if (v != null) {
+                              context
+                                  .read<ContactBloc>()
+                                  .add(ContactServiceChanged(v));
+                            }
+                          },
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 _InputField(
                   controller: _messageController,
                   label: 'Your Message',
@@ -248,7 +275,7 @@ class _ContactFormState extends State<_ContactForm> {
                   validator: (v) =>
                       (v == null || v.isEmpty) ? 'Message is required' : null,
                 ),
-                const SizedBox(height: 28),
+                SizedBox(height: 28.h),
                 SizedBox(
                   width: double.infinity,
                   child: state is ContactLoading
@@ -257,13 +284,13 @@ class _ContactFormState extends State<_ContactForm> {
                               color: AppColors.primaryPurple))
                       : GradientButton(
                           label: 'Send Message',
-                          onPressed: () => _submit(context, state.service),
+                          onPressed: () => _submit(context, selectedService),
                           icon: Icons.send_rounded,
                         ),
                 ),
                 if (state is ContactFailure)
                   Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                    padding: EdgeInsets.only(top: 16.h),
                     child: Text(state.message,
                         style: AppTypography.caption
                             .copyWith(color: Colors.red.shade400)),
@@ -304,7 +331,7 @@ class _InputField extends StatelessWidget {
         Text(label,
             style:
                 AppTypography.labelMedium.copyWith(color: AppColors.textMuted)),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         TextFormField(
           controller: controller,
           maxLines: maxLines,
@@ -320,25 +347,25 @@ class _InputField extends StatelessWidget {
             filled: true,
             fillColor: AppColors.darkBackground,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: AppColors.borderSubtle),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: AppColors.borderSubtle),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               borderSide:
-                  const BorderSide(color: AppColors.primaryPurple, width: 2),
+                  BorderSide(color: AppColors.primaryPurple, width: 2.w),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: Colors.red),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.red, width: 2),
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide: BorderSide(color: Colors.red, width: 2.w),
             ),
             errorStyle:
                 AppTypography.caption.copyWith(color: Colors.red.shade400),
@@ -353,17 +380,17 @@ class _SuccessCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(48),
+      padding: EdgeInsets.all(48.w),
       decoration: BoxDecoration(
         color: AppColors.surfaceCard,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         border: Border.all(color: AppColors.primaryPurple.withOpacity(0.5)),
       ),
       child: Column(
         children: [
           Container(
-            width: 80,
-            height: 80,
+            width: 80.w,
+            height: 80.h,
             decoration: const BoxDecoration(
               gradient: AppColors.primaryGradient,
               shape: BoxShape.circle,
@@ -371,16 +398,16 @@ class _SuccessCard extends StatelessWidget {
             child:
                 const Icon(Icons.check_rounded, color: Colors.white, size: 40),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24.h),
           Text('Message Sent! 🎉',
               style: AppTypography.h2.copyWith(color: Colors.white)),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           Text(
             'Thank you for reaching out. We\'ll review your project and get back to you within 24 hours.',
             style: AppTypography.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 28),
+          SizedBox(height: 28.h),
           GradientButton(
             label: 'Send Another',
             variant: ButtonVariant.outlined,
@@ -401,32 +428,32 @@ class _ContactInfo extends StatelessWidget {
       children: [
         Text('Contact Information',
             style: AppTypography.h3.copyWith(color: Colors.white)),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Text('Prefer to reach out directly? Here\'s how to find us.',
             style: AppTypography.bodySmall),
-        const SizedBox(height: 32),
+        SizedBox(height: 32.h),
         const _InfoItem(
             icon: Icons.email_outlined,
             title: 'Email',
             value: AppConstants.contactEmail),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
         const _InfoItem(
             icon: Icons.language_rounded,
             title: 'Website',
             value: AppConstants.websiteUrl),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
         const _InfoItem(
             icon: Icons.schedule_rounded,
             title: 'Response Time',
             value: 'Within 24 hours'),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
         const _InfoItem(
             icon: Icons.location_on_outlined,
             title: 'Serving',
             value: 'Clients Worldwide'),
-        const SizedBox(height: 40),
+        SizedBox(height: 40.h),
         Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -434,7 +461,7 @@ class _ContactInfo extends StatelessWidget {
                 AppColors.electricBlue.withOpacity(0.1)
               ],
             ),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: AppColors.borderSubtle),
           ),
           child: Column(
@@ -442,16 +469,16 @@ class _ContactInfo extends StatelessWidget {
             children: [
               Text('Free Consultation',
                   style: AppTypography.h4.copyWith(color: Colors.white)),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               Text(
                   'Book a free 30-minute call to discuss your project — no commitment required.',
                   style: AppTypography.bodySmall),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Row(
                 children: [
                   const Icon(Icons.calendar_today_rounded,
                       color: AppColors.primaryPurple, size: 16),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   Text('Schedule a Call',
                       style: AppTypography.labelMedium
                           .copyWith(color: AppColors.primaryPurple)),
@@ -477,16 +504,16 @@ class _InfoItem extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 44,
-          height: 44,
+          width: 44.w,
+          height: 44.h,
           decoration: BoxDecoration(
             color: AppColors.primaryPurple.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.r),
             border: Border.all(color: AppColors.borderSubtle),
           ),
           child: Icon(icon, color: AppColors.primaryPurple, size: 20),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

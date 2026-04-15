@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
@@ -21,7 +22,8 @@ class StatCounter extends StatefulWidget {
   State<StatCounter> createState() => _StatCounterState();
 }
 
-class _StatCounterState extends State<StatCounter> with SingleTickerProviderStateMixin {
+class _StatCounterState extends State<StatCounter>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _started = false;
@@ -60,7 +62,8 @@ class _StatCounterState extends State<StatCounter> with SingleTickerProviderStat
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ShaderMask(
-                shaderCallback: (bounds) => AppColors.primaryGradient.createShader(bounds),
+                shaderCallback: (bounds) =>
+                    AppColors.primaryGradient.createShader(bounds),
                 child: Text(
                   '$current${widget.suffix}',
                   style: AppTypography.displaySmall.copyWith(
@@ -69,8 +72,10 @@ class _StatCounterState extends State<StatCounter> with SingleTickerProviderStat
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(widget.label, style: AppTypography.bodySmall.copyWith(color: AppColors.textMuted)),
+              SizedBox(height: 8.h),
+              Text(widget.label,
+                  style: AppTypography.bodySmall
+                      .copyWith(color: AppColors.textMuted)),
             ],
           );
         },

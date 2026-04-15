@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -18,7 +19,7 @@ class WhyChooseUsSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: 100.h,
       ),
       child: Column(
         children: [
@@ -28,7 +29,7 @@ class WhyChooseUsSection extends StatelessWidget {
             subtitle:
                 'Six reasons top businesses choose AIgent softwares as their technology agent.',
           ),
-          const SizedBox(height: 60),
+          SizedBox(height: 60.h),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -78,12 +79,12 @@ class _FeatureTile extends StatelessWidget {
             onExit: (_) => context.read<HoverCubit>().onHover(false),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 250),
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(24.w),
               decoration: BoxDecoration(
                 color: hovered
                     ? AppColors.primaryPurple.withOpacity(0.08)
                     : AppColors.surfaceCard,
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(14.r),
                 border: Border.all(
                   color: hovered
                       ? AppColors.primaryPurple.withOpacity(0.5)
@@ -94,11 +95,11 @@ class _FeatureTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(icon, style: const TextStyle(fontSize: 28)),
-                  const SizedBox(height: 12),
+                  Text(icon, style: TextStyle(fontSize: 28.sp)),
+                  SizedBox(height: 12.h),
                   Text(title,
                       style: AppTypography.h4.copyWith(color: Colors.white)),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Text(desc,
                       style: AppTypography.caption,
                       maxLines: 3,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 
@@ -19,31 +20,35 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: align == TextAlign.left ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+      crossAxisAlignment: align == TextAlign.left
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.center,
       children: [
         // Tag pill
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
           decoration: BoxDecoration(
             color: AppColors.primaryPurple.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             border: Border.all(color: AppColors.borderSubtle),
           ),
-          child: Text(tag, style: AppTypography.labelMedium.copyWith(color: AppColors.primaryPurple)),
+          child: Text(tag,
+              style: AppTypography.labelMedium
+                  .copyWith(color: AppColors.primaryPurple)),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         Text(title, style: AppTypography.h1, textAlign: align),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         // Purple underline
         Container(
-          width: 60,
-          height: 3,
+          width: 60.w,
+          height: 3.h,
           decoration: BoxDecoration(
             gradient: AppColors.primaryGradient,
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: BorderRadius.circular(2.r),
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         Text(
           subtitle,
           style: AppTypography.bodyLarge,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ResponsiveUtils {
@@ -13,7 +14,8 @@ class ResponsiveUtils {
   static bool isDesktop(BuildContext context) =>
       ResponsiveBreakpoints.of(context).largerThan(TABLET);
 
-  static double value(BuildContext context, {
+  static double value(
+    BuildContext context, {
     required double mobile,
     required double tablet,
     required double desktop,
@@ -23,7 +25,8 @@ class ResponsiveUtils {
     return desktop;
   }
 
-  static int gridCrossAxisCount(BuildContext context, {
+  static int gridCrossAxisCount(
+    BuildContext context, {
     int mobile = 1,
     int tablet = 2,
     int desktop = 3,

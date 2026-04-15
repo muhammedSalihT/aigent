@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/constants/app_constants.dart';
@@ -13,7 +14,7 @@ class StatsSection extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
-      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+      padding: EdgeInsets.symmetric(vertical: 60.h, horizontal: 40.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -22,7 +23,7 @@ class StatsSection extends StatelessWidget {
             AppColors.primaryPurple.withOpacity(0.1),
           ],
         ),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         border: Border.all(color: AppColors.borderSubtle),
       ),
       child: isMobile
@@ -30,7 +31,7 @@ class StatsSection extends StatelessWidget {
               children: AppConstants.stats.asMap().entries.map((e) {
                 final s = e.value;
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
                   child: StatCounter(
                     targetNumber: int.parse(s['number']!),
                     suffix: s['suffix']!,
@@ -55,18 +56,16 @@ class StatsSection extends StatelessWidget {
                       ),
                       if (e.key < 3)
                         Container(
-                          width: 1,
-                          height: 60,
+                          width: 1.w,
+                          height: 60.h,
                           color: AppColors.borderSubtle,
-                          margin: const EdgeInsets.only(left: 0, top: 0),
+                          margin: EdgeInsets.only(left: 0.w, top: 0.h),
                         ),
                     ],
                   ),
                 );
               }).toList(),
             ),
-    )
-        .animate()
-        .fadeIn(duration: 600.ms);
+    ).animate().fadeIn(duration: 600.ms);
   }
 }

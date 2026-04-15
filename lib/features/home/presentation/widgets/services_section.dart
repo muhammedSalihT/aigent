@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../shared/widgets/section_header.dart';
 import '../../../../shared/widgets/service_card.dart';
@@ -13,22 +14,23 @@ class ServicesSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: 100.h,
       ),
       child: Column(
         children: [
           const SectionHeader(
             tag: '⚡ What We Build',
             title: 'Our Core Services',
-            subtitle: 'From mobile apps to intelligent AI agents — we deliver end-to-end solutions that transform how your business operates.',
+            subtitle:
+                'From mobile apps to intelligent AI agents — we deliver end-to-end solutions that transform how your business operates.',
           ),
-          const SizedBox(height: 60),
+           SizedBox(height: 60.h),
           isMobile
               ? Column(
                   children: AppConstants.services.asMap().entries.map((e) {
                     final data = e.value;
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 24),
+                      padding:  EdgeInsets.only(bottom: 24.h),
                       child: ServiceCard(
                         title: data['title'] as String,
                         subtitle: data['subtitle'] as String,

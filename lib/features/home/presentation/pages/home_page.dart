@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
@@ -100,8 +101,8 @@ class _CtaSection extends StatelessWidget {
     final isMobile = MediaQuery.of(context).size.width < 700;
     return Container(
       margin:
-          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80, vertical: 40),
-      padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 40),
+          EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80, vertical: 40.h),
+      padding:  EdgeInsets.symmetric(vertical: 70.h, horizontal: 40.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -111,7 +112,7 @@ class _CtaSection extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(24.r),
         border: Border.all(color: AppColors.borderSubtle),
       ),
       child: Column(
@@ -121,13 +122,13 @@ class _CtaSection extends StatelessWidget {
             style: AppTypography.h1.copyWith(color: Colors.white),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
+           SizedBox(height: 16.h),
           Text(
             'Let\'s turn your vision into an AI-powered product that delivers real results.',
             style: AppTypography.bodyLarge,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 36),
+           SizedBox(height: 36.h),
           GradientButton(
             label: 'Start Your Project Today',
             onPressed: () => context.go('/contact'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
@@ -20,12 +21,14 @@ class AppRouter {
       GoRoute(
         path: '/services',
         name: 'services',
-        pageBuilder: (context, state) => _buildPage(const ServicesPage(), state),
+        pageBuilder: (context, state) =>
+            _buildPage(const ServicesPage(), state),
       ),
       GoRoute(
         path: '/portfolio',
         name: 'portfolio',
-        pageBuilder: (context, state) => _buildPage(const PortfolioPage(), state),
+        pageBuilder: (context, state) =>
+            _buildPage(const PortfolioPage(), state),
       ),
       GoRoute(
         path: '/about',
@@ -42,14 +45,15 @@ class AppRouter {
       backgroundColor: const Color(0xFF0D0220),
       body: Center(
         child: Text(
-          '404 — Page Not Found',
-          style: const TextStyle(color: Colors.white, fontSize: 24),
+          '404 â€” Page Not Found',
+          style: TextStyle(color: Colors.white, fontSize: 24.sp),
         ),
       ),
     ),
   );
 
-  static CustomTransitionPage<void> _buildPage(Widget child, GoRouterState state) {
+  static CustomTransitionPage<void> _buildPage(
+      Widget child, GoRouterState state) {
     return CustomTransitionPage<void>(
       key: state.pageKey,
       child: child,

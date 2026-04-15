@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,6 +39,9 @@ class _HeroSectionState extends State<HeroSection>
     final isMobile = MediaQuery.of(context).size.width < 700;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    // For lint: Const constructors can't use runtime-calculated sizes (like 8.w, 28.h).
+    // Instead, use non-const versions everywhere .w or .h are used.
+
     return SizedBox(
       height: screenHeight,
       child: Stack(
@@ -71,25 +75,25 @@ class _HeroSectionState extends State<HeroSection>
                 children: [
                   // AI badge
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 16.w, vertical: 8.h),
                     decoration: BoxDecoration(
                       color: AppColors.primaryPurple.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       border: Border.all(color: AppColors.borderSubtle),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
+                          width: 8.w,
+                          height: 8.h,
+                          decoration: BoxDecoration(
                             color: AppColors.primaryPurple,
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8.w),
                         Text(
                           'AI-First Software Development',
                           style: AppTypography.labelMedium
@@ -99,24 +103,24 @@ class _HeroSectionState extends State<HeroSection>
                     ),
                   )
                       .animate()
-                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .fadeIn(duration: Duration(milliseconds: 800), curve: Curves.easeOutCubic)
                       .slideY(
                           begin: 0.4,
                           end: 0,
-                          duration: 800.ms,
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.easeOutCubic)
                       .scale(
                           begin: const Offset(0.9, 0.9),
                           end: const Offset(1, 1),
-                          duration: 800.ms,
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.easeOutCubic),
 
-                  const SizedBox(height: 28),
+                  SizedBox(height: 28.h),
 
                   // Company name
                   _HeroTitle(isMobile: isMobile),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
 
                   // Tagline with shimmer
                   Text(
@@ -127,19 +131,19 @@ class _HeroSectionState extends State<HeroSection>
                     textAlign: TextAlign.center,
                     maxLines: 3,
                   )
-                      .animate(delay: 400.ms)
-                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .animate(delay: Duration(milliseconds: 400))
+                      .fadeIn(duration: Duration(milliseconds: 800), curve: Curves.easeOutCubic)
                       .slideY(
                           begin: 0.2,
                           end: 0,
-                          duration: 800.ms,
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.easeOutCubic)
                       .shimmer(
-                          delay: 1200.ms,
-                          duration: 1500.ms,
+                          delay: Duration(milliseconds: 1200),
+                          duration: Duration(milliseconds: 1500),
                           color: AppColors.textMuted),
 
-                  const SizedBox(height: 44),
+                  SizedBox(height: 44.h),
 
                   // CTA Buttons
                   Wrap(
@@ -160,17 +164,17 @@ class _HeroSectionState extends State<HeroSection>
                       ),
                     ],
                   )
-                      .animate(delay: 600.ms)
-                      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
+                      .animate(delay: Duration(milliseconds: 600))
+                      .fadeIn(duration: Duration(milliseconds: 800), curve: Curves.easeOutCubic)
                       .slideY(
                           begin: 0.3,
                           end: 0,
-                          duration: 800.ms,
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.easeOutCubic)
                       .scale(
                           begin: const Offset(0.9, 0.9),
                           end: const Offset(1, 1),
-                          duration: 800.ms,
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.easeOutCubic),
                 ],
               ),
@@ -190,14 +194,14 @@ class _HeroSectionState extends State<HeroSection>
                   child: Column(
                     children: [
                       Text('Scroll to explore', style: AppTypography.caption),
-                      const SizedBox(height: 8),
-                      const Icon(Icons.keyboard_arrow_down_rounded,
+                      SizedBox(height: 8.h),
+                      Icon(Icons.keyboard_arrow_down_rounded,
                           color: AppColors.primaryPurple, size: 28),
                     ],
                   ),
                 );
               },
-            ).animate(delay: 1200.ms).fadeIn(),
+            ).animate(delay: Duration(milliseconds: 1200)).fadeIn(),
           ),
         ],
       ),
@@ -220,7 +224,9 @@ class _HeroTitle extends StatelessWidget {
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 28 : 50,
               color: Colors.white,
-              height: 1.2,
+              height: 1.2 *
+                  (1.h
+                      .toDouble()), // Ensures `height` is not a const value (avoid lint)
             ),
           ),
           TextSpan(
@@ -228,7 +234,8 @@ class _HeroTitle extends StatelessWidget {
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 42 : 80,
               color: Colors.white,
-              height: 1.2,
+              height: 1.2 *
+                  (1.h.toDouble()),
             ),
           ),
           TextSpan(
@@ -236,9 +243,9 @@ class _HeroTitle extends StatelessWidget {
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 42 : 80,
               color: AppColors.primaryPurple,
-              height: 1.2,
+              height: 1.2 * (1.h.toDouble()),
               shadows: [
-                const Shadow(color: AppColors.primaryPurple, blurRadius: 25),
+                Shadow(color: AppColors.primaryPurple, blurRadius: 25),
                 Shadow(
                     color: AppColors.primaryPurple.withOpacity(0.4),
                     blurRadius: 50),
@@ -250,21 +257,24 @@ class _HeroTitle extends StatelessWidget {
             style: AppTypography.displayLarge.copyWith(
               fontSize: isMobile ? 42 : 80,
               color: Colors.white,
-              height: 1.2,
+              height: 1.2 * (1.h.toDouble()),
             ),
           ),
         ],
       ),
     )
-        .animate(delay: 200.ms)
-        .fadeIn(duration: 1000.ms, curve: Curves.easeOutCubic)
+        .animate(delay: Duration(milliseconds: 200))
+        .fadeIn(duration: Duration(milliseconds: 1000), curve: Curves.easeOutCubic)
         .slideY(
-            begin: 0.2, end: 0, duration: 1000.ms, curve: Curves.easeOutCubic)
+            begin: 0.2, end: 0, duration: Duration(milliseconds: 1000), curve: Curves.easeOutCubic)
         .scale(
             begin: const Offset(0.9, 0.9),
             end: const Offset(1, 1),
-            duration: 1000.ms,
+            duration: Duration(milliseconds: 1000),
             curve: Curves.easeOutCubic)
-        .shimmer(delay: 1200.ms, duration: 1500.ms, color: Colors.white12);
+        .shimmer(
+            delay: Duration(milliseconds: 1200),
+            duration: Duration(milliseconds: 1500),
+            color: Colors.white12);
   }
 }

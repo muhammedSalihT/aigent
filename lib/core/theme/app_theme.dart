@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
@@ -17,7 +18,8 @@ class AppTheme {
           onSecondary: Colors.white,
           onSurface: AppColors.textPrimary,
         ),
-        textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).apply(
+        textTheme:
+            GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).apply(
           bodyColor: AppColors.textPrimary,
           displayColor: AppColors.textPrimary,
         ),
@@ -29,27 +31,30 @@ class AppTheme {
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryPurple,
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r)),
+            padding:
+                EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: AppColors.surfaceCard,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.borderSubtle),
+            borderRadius: BorderRadius.circular(8.r),
+            borderSide: BorderSide(color: AppColors.borderSubtle),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.borderSubtle),
+            borderRadius: BorderRadius.circular(8.r),
+            borderSide: BorderSide(color: AppColors.borderSubtle),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.primaryPurple, width: 2),
+            borderRadius: BorderRadius.circular(8.r),
+            borderSide:
+                BorderSide(color: AppColors.primaryPurple, width: 2.w),
           ),
-          labelStyle: const TextStyle(color: AppColors.textMuted),
-          hintStyle: const TextStyle(color: AppColors.textMuted),
+          labelStyle: TextStyle(color: AppColors.textMuted),
+          hintStyle: TextStyle(color: AppColors.textMuted),
         ),
       );
 }

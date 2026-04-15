@@ -26,7 +26,7 @@ class ContactFormSubmitted extends ContactEvent {
 class ContactServiceChanged extends ContactEvent {
   final String service;
   const ContactServiceChanged(this.service);
-  
+
   @override
   List<Object?> get props => [service];
 }

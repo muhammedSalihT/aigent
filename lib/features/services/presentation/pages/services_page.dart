@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
@@ -54,9 +55,10 @@ class _ServicesPageState extends State<ServicesPage> {
               controller: _scrollController,
               child: Column(
                 children: [
-                  const SizedBox(height: 120),
+                  SizedBox(height: 120.h),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
                     child: const SectionHeader(
                       tag: '⚡ Services',
                       title: 'What We Build For You',
@@ -64,16 +66,17 @@ class _ServicesPageState extends State<ServicesPage> {
                           'End-to-end technology services built for modern businesses that demand AI-first thinking.',
                     ),
                   ),
-                  const SizedBox(height: 60),
+                  SizedBox(height: 60.h),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
                     child: isMobile
                         ? Column(
                             children:
                                 AppConstants.services.asMap().entries.map((e) {
                               final d = e.value;
                               return Padding(
-                                padding: const EdgeInsets.only(bottom: 24),
+                                padding: EdgeInsets.only(bottom: 24.h),
                                 child: ServiceCard(
                                   title: d['title'] as String,
                                   subtitle: d['subtitle'] as String,
@@ -93,14 +96,14 @@ class _ServicesPageState extends State<ServicesPage> {
                               final d = e.value;
                               return Expanded(
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.only(right: e.key < 2 ? 20 : 0),
+                                  padding: EdgeInsets.only(
+                                      right: e.key < 2 ? 20 : 0),
                                   child: ServiceCard(
                                     title: d['title'] as String,
                                     subtitle: d['subtitle'] as String,
                                     description: d['description'] as String,
-                                    features:
-                                        List<String>.from(d['features'] as List),
+                                    features: List<String>.from(
+                                        d['features'] as List),
                                     iconType: d['icon'] as String,
                                     index: e.key,
                                   ),
@@ -109,13 +112,14 @@ class _ServicesPageState extends State<ServicesPage> {
                             }).toList(),
                           ),
                   ),
-                  const SizedBox(height: 80),
+                  SizedBox(height: 80.h),
                   _TechStackSection(isMobile: isMobile),
-                  const SizedBox(height: 80),
+                  SizedBox(height: 80.h),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
                     child: Container(
-                      padding: const EdgeInsets.all(48),
+                      padding: EdgeInsets.all(48.w),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -123,7 +127,7 @@ class _ServicesPageState extends State<ServicesPage> {
                             AppColors.electricBlue.withOpacity(0.1)
                           ],
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(color: AppColors.borderSubtle),
                       ),
                       child: Column(
@@ -131,12 +135,12 @@ class _ServicesPageState extends State<ServicesPage> {
                           Text('Start Your Project',
                               style: AppTypography.h1,
                               textAlign: TextAlign.center),
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16.h),
                           Text(
                               'Tell us what you need and we\'ll get back within 24 hours.',
                               style: AppTypography.bodyLarge,
                               textAlign: TextAlign.center),
-                          const SizedBox(height: 28),
+                          SizedBox(height: 28.h),
                           GradientButton(
                               label: 'Get a Free Quote',
                               onPressed: () => context.go('/contact'),
@@ -145,7 +149,7 @@ class _ServicesPageState extends State<ServicesPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 80),
+                  SizedBox(height: 80.h),
                   const FooterWidget(),
                 ],
               ),
@@ -193,26 +197,26 @@ class _TechStackSection extends StatelessWidget {
             subtitle:
                 'We use battle-tested technologies that ensure performance, scalability, and maintainability.',
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: 40.h),
           Wrap(
             spacing: 16,
             runSpacing: 16,
             alignment: WrapAlignment.center,
             children: techs.asMap().entries.map((e) {
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.w, vertical: 14.h),
                 decoration: BoxDecoration(
                   color: AppColors.surfaceCard,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                   border: Border.all(color: AppColors.borderSubtle),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(e.value['icon']!,
-                        style: const TextStyle(fontSize: 20)),
-                    const SizedBox(width: 10),
+                        style: TextStyle(fontSize: 20.sp)),
+                    SizedBox(width: 10.w),
                     Text(e.value['name']!,
                         style: AppTypography.labelMedium
                             .copyWith(color: Colors.white)),

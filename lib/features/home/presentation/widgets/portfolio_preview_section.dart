@@ -17,9 +17,9 @@ class PortfolioPreviewSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         left: isMobile ? 24 : 80,
-        right: 0,
-        top: 100,
-        bottom: 100,
+        right: 0.w,
+        top: 100.h,
+        bottom: 100.h,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,9 +47,9 @@ class PortfolioPreviewSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 48),
+           SizedBox(height: 48.h),
           SizedBox(
-            height: 500,
+            height: 500.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(right: isMobile ? 24 : 80),
@@ -57,7 +57,7 @@ class PortfolioPreviewSection extends StatelessWidget {
               itemBuilder: (context, i) {
                 final p = AppConstants.portfolio[i];
                 return Padding(
-                  padding: const EdgeInsets.only(right: 20),
+                  padding:  EdgeInsets.only(right: 20.w),
                   child: ProjectCard(
                     title: p['title'] as String,
                     description: p['description'] as String,
@@ -73,7 +73,7 @@ class PortfolioPreviewSection extends StatelessWidget {
           ),
           if (isMobile)
             Padding(
-              padding: const EdgeInsets.only(top: 28, right: 24),
+              padding:  EdgeInsets.only(top: 28.h, right: 24.w),
               child: GradientButton(
                 label: 'View All Projects',
                 variant: ButtonVariant.outlined,

@@ -12,7 +12,8 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
     on<ContactServiceChanged>(_onServiceChanged);
   }
 
-  void _onServiceChanged(ContactServiceChanged event, Emitter<ContactState> emit) {
+  void _onServiceChanged(
+      ContactServiceChanged event, Emitter<ContactState> emit) {
     emit(ContactInitial(service: event.service));
   }
 
@@ -39,7 +40,9 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
 
       emit(ContactSuccess(service: currentService));
     } catch (e) {
-      emit(ContactFailure('Failed to send. Please email us directly at $_destinationEmail', currentService));
+      emit(ContactFailure(
+          'Failed to send. Please email us directly at $_destinationEmail',
+          currentService));
     }
   }
 

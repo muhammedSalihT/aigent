@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/theme/app_colors.dart';
@@ -13,19 +14,19 @@ class FooterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 700;
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.footerDark,
         border: Border(
-          top: BorderSide(color: AppColors.borderSubtle, width: 1),
+          top: BorderSide(color: AppColors.borderSubtle, width: 1.w),
         ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 60),
+      padding: EdgeInsets.symmetric(horizontal: 48.w, vertical: 60.h),
       child: Column(
         children: [
           isMobile ? _FooterMobile() : _FooterDesktop(),
-          const SizedBox(height: 40),
-          Container(height: 1, color: AppColors.borderSubtle),
-          const SizedBox(height: 24),
+          SizedBox(height: 40.h),
+          Container(height: 1.h, color: AppColors.borderSubtle),
+          SizedBox(height: 24.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -35,7 +36,8 @@ class FooterWidget extends StatelessWidget {
               ),
               Text(
                 'AI-First Software Development',
-                style: AppTypography.caption.copyWith(color: AppColors.primaryPurple),
+                style:
+                    AppTypography.caption.copyWith(color: AppColors.primaryPurple),
               ),
             ],
           ),
@@ -52,13 +54,22 @@ class _FooterDesktop extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(flex: 2, child: _BrandColumn()),
-        const SizedBox(width: 60),
-        Expanded(child: _LinksColumn(title: 'Services', links: [
-          'App Development', 'Web Development', 'AI Workflow Agents',
-        ])),
-        Expanded(child: _LinksColumn(title: 'Company', links: [
-          'About Us', 'Portfolio', 'Contact', 'Get a Quote',
-        ])),
+        SizedBox(width: 60.w),
+        Expanded(
+          child: _LinksColumn(title: 'Services', links: [
+            'App Development',
+            'Web Development',
+            'AI Workflow Agents',
+          ]),
+        ),
+        Expanded(
+          child: _LinksColumn(title: 'Company', links: [
+            'About Us',
+            'Portfolio',
+            'Contact',
+            'Get a Quote',
+          ]),
+        ),
         Expanded(child: _ContactColumn()),
       ],
     );
@@ -72,9 +83,12 @@ class _FooterMobile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _BrandColumn(),
-        const SizedBox(height: 32),
-        _LinksColumn(title: 'Services', links: ['App Development', 'Web Development', 'AI Agents']),
-        const SizedBox(height: 32),
+        SizedBox(height: 32.h),
+        _LinksColumn(
+          title: 'Services',
+          links: ['App Development', 'Web Development', 'AI Agents'],
+        ),
+        SizedBox(height: 32.h),
         _ContactColumn(),
       ],
     );
@@ -89,21 +103,34 @@ class _BrandColumn extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(children: [
-            TextSpan(text: 'Soft', style: AppTypography.h3.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
-            TextSpan(text: 'AI', style: AppTypography.h3.copyWith(color: AppColors.primaryPurple, fontWeight: FontWeight.w800)),
-            TextSpan(text: 'gent', style: AppTypography.h3.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+            TextSpan(
+                text: 'Soft',
+                style: AppTypography.h3.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
+            TextSpan(
+                text: 'AI',
+                style: AppTypography.h3.copyWith(
+                    color: AppColors.primaryPurple,
+                    fontWeight: FontWeight.w800)),
+            TextSpan(
+                text: 'gent',
+                style: AppTypography.h3.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
           ]),
         ),
-        const SizedBox(height: 12),
-        Text(AppConstants.taglineShort, style: AppTypography.bodySmall, maxLines: 3),
-        const SizedBox(height: 20),
+        SizedBox(height: 12.h),
+        Text(AppConstants.taglineShort,
+            style: AppTypography.bodySmall, maxLines: 3),
+        SizedBox(height: 20.h),
         Row(
           children: [
             _SocialIcon(icon: Icons.code_rounded, url: 'https://github.com'),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _SocialIcon(icon: Icons.link_rounded, url: 'https://linkedin.com'),
-            const SizedBox(width: 12),
-            _SocialIcon(icon: Icons.alternate_email_rounded, url: 'mailto:${AppConstants.contactEmail}'),
+            SizedBox(width: 12.w),
+            _SocialIcon(
+                icon: Icons.alternate_email_rounded,
+                url: 'mailto:${AppConstants.contactEmail}'),
           ],
         ),
       ],
@@ -123,20 +150,21 @@ class _SocialIcon extends StatelessWidget {
       child: BlocBuilder<HoverCubit, bool>(
         builder: (context, hovered) {
           return MouseRegion(
-      onEnter: (_) => context.read<HoverCubit>().onHover(true),
-      onExit: (_) => context.read<HoverCubit>().onHover(false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: hovered ? AppColors.primaryPurple : AppColors.surfaceCard,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.borderSubtle),
-        ),
-        child: Icon(icon, color: Colors.white, size: 18),
-      ),
-    );
+            onEnter: (_) => context.read<HoverCubit>().onHover(true),
+            onExit: (_) => context.read<HoverCubit>().onHover(false),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 40.w,
+              height: 40.h,
+              decoration: BoxDecoration(
+                color:
+                    hovered ? AppColors.primaryPurple : AppColors.surfaceCard,
+                borderRadius: BorderRadius.circular(10.r),
+                border: Border.all(color: AppColors.borderSubtle),
+              ),
+              child: Icon(icon, color: Colors.white, size: 18),
+            ),
+          );
         },
       ),
     );
@@ -153,10 +181,11 @@ class _LinksColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTypography.labelLarge.copyWith(color: Colors.white)),
-        const SizedBox(height: 20),
+        Text(title,
+            style: AppTypography.labelLarge.copyWith(color: Colors.white)),
+        SizedBox(height: 20.h),
         ...links.map((l) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: 10.h),
               child: Text(l, style: AppTypography.bodySmall),
             )),
       ],
@@ -170,33 +199,38 @@ class _ContactColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Get in Touch', style: AppTypography.labelLarge.copyWith(color: Colors.white)),
-        const SizedBox(height: 20),
+        Text('Get in Touch',
+            style: AppTypography.labelLarge.copyWith(color: Colors.white)),
+        SizedBox(height: 20.h),
         Row(
           children: [
-            const Icon(Icons.email_outlined, color: AppColors.primaryPurple, size: 16),
-            const SizedBox(width: 8),
+            Icon(Icons.email_outlined,
+                color: AppColors.primaryPurple, size: 16),
+            SizedBox(width: 8.w),
             Text(AppConstants.contactEmail, style: AppTypography.bodySmall),
           ],
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
         Row(
           children: [
-            const Icon(Icons.language_rounded, color: AppColors.primaryPurple, size: 16),
-            const SizedBox(width: 8),
+            Icon(Icons.language_rounded,
+                color: AppColors.primaryPurple, size: 16),
+            SizedBox(width: 8.w),
             Text(AppConstants.websiteUrl, style: AppTypography.bodySmall),
           ],
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24.h),
         GestureDetector(
           onTap: () => context.go('/contact'),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding:
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             decoration: BoxDecoration(
               gradient: AppColors.primaryGradient,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             ),
-            child: Text('Start a Project', style: AppTypography.labelMedium.copyWith(color: Colors.white)),
+            child: Text('Start a Project',
+                style: AppTypography.labelMedium.copyWith(color: Colors.white)),
           ),
         ),
       ],

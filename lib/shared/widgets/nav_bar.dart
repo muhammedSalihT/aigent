@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,7 +23,8 @@ class NavBarWidget extends StatelessWidget {
       color: scrolled
           ? AppColors.navbarSolid.withOpacity(0.97)
           : Colors.transparent,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      // Remove const keyword to allow .w/.h extensions
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: isMobile ? _MobileNavContent() : _DesktopNavContent(),
     );
   }
@@ -41,7 +43,7 @@ class _DesktopNavContent extends StatelessWidget {
               route: link['route']!,
               isActive: location == link['route'],
             )),
-        const SizedBox(width: 24),
+        SizedBox(width: 24.w), // Remove const to allow .w
         GradientButton(
           label: 'Get a Quote',
           onPressed: () => context.go('/contact'),
@@ -94,19 +96,20 @@ class _DrawerWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        width: 280,
+        width: 280.w,
         height: double.infinity,
         color: AppColors.navbarSolid,
-        padding: const EdgeInsets.all(24),
+        // Remove const to allow .w
+        padding: EdgeInsets.all(24.w),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),  // Remove const to allow .h
               const LogoWidget(),
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),  // Remove const to allow .h
               ...AppConstants.navLinks.map((link) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: EdgeInsets.symmetric(vertical: 12.h), // Remove const
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pop();
@@ -152,8 +155,8 @@ class _NavLink extends StatelessWidget {
             child: GestureDetector(
               onTap: () => context.go(route),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                // Remove const to allow .w/.h extensions
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 child: AnimatedDefaultTextStyle(
                   duration: const Duration(milliseconds: 200),
                   style: AppTypography.labelMedium.copyWith(
@@ -183,8 +186,8 @@ class LogoWidget extends StatelessWidget {
       onTap: () => context.go('/'),
       child: Image.asset(
         'assets/images/logo.jpeg',
-        height: 90,
-        width: 200,
+        height: 90.h,
+        width: 200.w,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => Text(
           'AIgent softwares',
